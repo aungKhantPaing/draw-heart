@@ -1,25 +1,25 @@
 // live code: http://playcode.io/693654/
 const drawHeart = (n) => {
     console.log("For input", n, ":");
-    for (let i = -n; i <= n * 2; i++) {
-      // -3-2-10123456
-      // 012321-1-2-3
-      const h = n - Math.abs(i);
-      // -3-2-10123210
-      const b = n - Math.abs(i - n);
+    for (let i = -n; i < n * 2; i++) { // -3 -2 -1 0 1 2 3 4 5 6
+      // 0 1 2 3 2 1 -1 -2 -3
+      const w = n - Math.abs(i);
+      // -3 -2 -1 0 1 2 3 2 1 0
+      const m = n - Math.abs(i - n);
   
-      const wing = getPLine(h);
+      const wing = getPLine(w);
   
       let mid;
-      if (i < 0) mid = getSpace(n * 2 - h * 2 - 1);
+      if (i < 0) mid = getSpace(n * 2 - w * 2 - 1);
       else if (i === 0) mid = "0";
-      else mid = getPLine(b);
+      else mid = getPLine(m);
       if (i % n !== 0 && i < n) mid = "0" + mid + "0";
   
-      const print = getSpace(Math.abs(i)) + 0 + wing + mid + wing + (i === n * 2 ? "" : "0");
+      const print = getSpace(Math.abs(i)) + 0 + wing + mid + wing + 0;
   
       console.log(...print);
     }
+    console.log(...(getSpace(n*2) + 0))
   };
   
   const getPLine = (lineNo) => {
